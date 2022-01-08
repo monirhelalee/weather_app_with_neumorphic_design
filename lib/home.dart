@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.teal,
         title: Text(widget.title),
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       body: vm.shouldShowLoader
           ? SpinKitRotatingCircle(
               color: Colors.teal,
@@ -51,30 +51,81 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: StreamBuilder(
-                          stream: Stream.periodic(const Duration(seconds: 1)),
-                          builder: (context, snapshot) {
-                            return Center(
-                              child: Text(
-                                "${DateFormat('hh:mm:ss a').format(DateTime.now())}\n${DateFormat('EEE, dd MMM yyyy').format(DateTime.now())}",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          },
-                        ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Container(
-                          color: Colors.grey[200],
-                          width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width * .7,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            //bottom right darker shadow
+                            BoxShadow(
+                              color: Colors.grey.shade600,
+                              offset: Offset(4, 4),
+                              blurRadius: 15,
+                              spreadRadius: 1,
+                            ),
+                            //top left right lighter shadow
+                            BoxShadow(
+                              color: Colors.white,
+                              offset: Offset(-4, -4),
+                              blurRadius: 15,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: StreamBuilder(
+                            stream: Stream.periodic(const Duration(seconds: 1)),
+                            builder: (context, snapshot) {
+                              return Center(
+                                child: Text(
+                                  "${DateFormat('hh:mm:ss a').format(DateTime.now())}\n${DateFormat('EEE, dd MMM yyyy').format(DateTime.now())}",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                          width: MediaQuery.of(context).size.width * .7,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              //bottom right darker shadow
+                              BoxShadow(
+                                color: Colors.grey.shade600,
+                                offset: Offset(4, 4),
+                                blurRadius: 15,
+                                spreadRadius: 1,
+                              ),
+                              //top left right lighter shadow
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-4, -4),
+                                blurRadius: 15,
+                                spreadRadius: 1,
+                              ),
+                            ],
+                          ),
                           child: Column(
                             children: [
                               Image.asset(
                                 vm.imagePath,
-                                height: 150,
+                                height: 100,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     '${weatherModel?.main?.temp?.toInt().toString()}',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 100),
+                                        fontSize: 90),
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -114,14 +165,35 @@ class _MyHomePageState extends State<MyHomePage> {
                               )
                             ],
                           )),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -134,12 +206,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Wind',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${weatherModel?.wind?.speed?.toString()} km/h',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -149,10 +221,28 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -165,12 +255,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Humidity',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${weatherModel?.main?.humidity.toString()} %',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -182,16 +272,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -204,12 +312,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Feels Like',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${weatherModel?.main?.feelsLike?.toInt().toString()}°C',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -219,10 +327,28 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -235,12 +361,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Pressure',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${weatherModel?.main?.pressure.toString()} mb',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -252,16 +378,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -274,12 +418,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Sunrise',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel!.sys!.sunrise * 1000).toLocal())}',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -289,10 +433,28 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * .42,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                //bottom right darker shadow
+                                BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  offset: Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                //top left right lighter shadow
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4, -4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -305,12 +467,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Text(
                                         'Sunset',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 18),
                                       ),
                                       Text(
                                         '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel.sys!.sunset * 1000).toLocal())}',
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
