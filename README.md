@@ -1,3 +1,3 @@
-# weather App with neumorphic design
+# Weather App with Neumorphic Design
 
 weather app develop with Flutter
