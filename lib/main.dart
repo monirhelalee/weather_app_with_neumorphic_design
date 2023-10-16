@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/home.dart';
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: MyHomePage(title: 'Weather'),
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
       ),
     );
   }

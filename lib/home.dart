@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/locaton.dart';
 import 'package:weather/weather_view_model.dart';
-import 'package:timezone/timezone.dart' as tz;
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -36,6 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text(widget.title),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: GestureDetector(
+                onTap: getLocationWithWeatherData,
+                child: Icon(FontAwesomeIcons.arrowsRotate)),
+          ),
+        ],
       ),
       backgroundColor: Colors.grey[300],
       body: vm.shouldShowLoader
@@ -46,17 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
           : RefreshIndicator(
               onRefresh: getLocationWithWeatherData,
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(
-                        height: 10,
-                      ),
                       Container(
-                        width: MediaQuery.of(context).size.width * .7,
+                        width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.circular(20),
@@ -95,12 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
                       Container(
-                          width: MediaQuery.of(context).size.width * .7,
+                          width: MediaQuery.of(context).size.width,
                           padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(20),
@@ -165,15 +169,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               )
                             ],
                           )),
-                      SizedBox(
-                        height: 20,
-                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -194,35 +196,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/windy.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Wind',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${weatherModel?.wind?.speed?.toString()} km/h',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Wind',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${weatherModel?.wind?.speed?.toString()} km/h',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -243,43 +240,35 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/humidity.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Humidity',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${weatherModel?.main?.humidity.toString()} %',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Humidity',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${weatherModel?.main?.humidity.toString()} %',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -300,35 +289,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/warm.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Feels Like',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${weatherModel?.main?.feelsLike?.toInt().toString()}°C',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Feels Like',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${weatherModel?.main?.feelsLike?.toInt().toString()}°C',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -349,43 +333,35 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/pressure.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Pressure',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${weatherModel?.main?.pressure.toString()} mb',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Pressure',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${weatherModel?.main?.pressure.toString()} mb',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -406,35 +382,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/sunrise.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Sunrise',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel!.sys!.sunrise * 1000).toLocal())}',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Sunrise',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel!.sys!.sunrise * 1000).toLocal())}',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * .42,
-                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 2.4,
+                            padding: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(20),
@@ -455,28 +426,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   "assets/sunset.png",
                                   height: 30,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Sunset',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      Text(
-                                        '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel.sys!.sunset * 1000).toLocal())}',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Sunset',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  '${DateFormat("hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(weatherModel.sys!.sunset * 1000).toLocal())}',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -488,13 +453,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     getLocationWithWeatherData();
-      //   },
-      //   tooltip: 'Current Location Weather',
-      //   child: Icon(Icons.cloud),
-      // ),
     );
   }
 }
